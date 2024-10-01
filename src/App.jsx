@@ -10,6 +10,7 @@ function App() {
     expectedReturn: 6,
     duration: 10,
   });
+  const inputDuration = inputValue.duration > 0;
   function handleInputChange(inputIdentifier, newValue) {
     setInputValue((prevState) => {
       return {
@@ -22,7 +23,11 @@ function App() {
     <>
       <Header />
       <UserInput inputValue={inputValue} onChange={handleInputChange} />
-      <Results inputValue={inputValue} onChange={handleInputChange} />
+      {inputDuration ? (
+        <Results inputValue={inputValue} onChange={handleInputChange} />
+      ) : (
+        <p className="center">Please enter a duration greater than zero</p>
+      )}
     </>
   );
 }
